@@ -6,7 +6,7 @@ let transactionData: Array<string|number> = [];
 
 //get
 router.get("/api/", async (req: Request, res: Response) => {
-    res.json(transactionData);
+    res.send("get success");
 });
 
 //get id
