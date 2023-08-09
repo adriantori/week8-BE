@@ -14,6 +14,6 @@ app.use(bodyParser.json());
 
 app.use("/", router);
 
-app.listen(port, "0.0.0.0",() => {
+app.listen(port, () => {
     console.log(`server listen ${port}`);
 });
