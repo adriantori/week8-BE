@@ -10,9 +10,9 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const router_1 = require("./routes/router");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const port = +!process.env.port || 3000;
+const port = +!process.env.PORT || 3000;
 app.use(body_parser_1.default.json());
 app.use("/", router_1.router);
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
     console.log(`server listen ${port}`);
 });

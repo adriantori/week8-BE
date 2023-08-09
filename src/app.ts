@@ -8,12 +8,12 @@ import { router } from "./routes/router";
 dotenv.config();
 
 const app: Express = express();
-const port: number = +!process.env.port || 3000;
+const port: number = +!process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
 app.use("/", router);
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0",() => {
     console.log(`server listen ${port}`);
 });
