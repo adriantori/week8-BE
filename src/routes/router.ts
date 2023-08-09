@@ -9,6 +9,11 @@ router.get("/api/", async (req: Request, res: Response) => {
     res.send("get success");
 });
 
+//test
+router.get("/", (req: Request, res: Response) => {
+    res.send("get success");
+});
+
 //get id
 
 //post

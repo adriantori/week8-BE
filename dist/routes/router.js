@@ -16,8 +16,12 @@ exports.router = (0, express_1.Router)();
 let transactionData = [];
 //get
 exports.router.get("/api/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.json(transactionData);
+    res.send("get success");
 }));
+//test
+exports.router.get("/", (req, res) => {
+    res.send("get success");
+});
 //get id
 //post
 exports.router.post("/api/", (req, res) => {
