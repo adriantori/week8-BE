@@ -1,0 +1,19 @@
+import express, { Express, Request, Response } from "express";
+import dotenv from "dotenv";
+import bodyParser from "body-parser";
+
+//routes
+import { router } from "./routes/router";
+
+dotenv.config();
+
+const app: Express = express();
+const port: number = +!process.env.port || 3000;
+
+app.use(bodyParser.json());
+
+app.use("/", router);
+
+app.listen(port, () => {
+    console.log(`server listen ${port}`);
+});
