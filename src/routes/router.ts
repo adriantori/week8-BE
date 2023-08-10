@@ -8,6 +8,7 @@ export const router = Router();
 //hello
 router.get('/', (req: Request, res: Response) => {
     res.send("Welcome to Codegree API")
+    console.log(appRoot);
 });
 
 //get all transaction

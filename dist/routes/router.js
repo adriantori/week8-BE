@@ -34,6 +34,7 @@ exports.router = (0, express_1.Router)();
 //hello
 exports.router.get('/', (req, res) => {
     res.send("Welcome to Codegree API");
+    console.log(app_root_path_1.default);
 });
 //get all transaction
 exports.router.get('/transaction', (req, res) => {
