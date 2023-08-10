@@ -13,6 +13,6 @@ const app = (0, express_1.default)();
 const port = +!process.env.PORT || 3000;
 app.use(body_parser_1.default.json());
 app.use("/", router_1.router);
-app.listen(port, "0.0.0.0", () => {
+app.listen(port, () => {
     console.log(`server listen ${port}`);
 });
