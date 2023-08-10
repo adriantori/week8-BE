@@ -8,12 +8,12 @@ import { router } from "./routes/router";
 dotenv.config();
 
 const app: Express = express();
-const port: number = +!process.env.PORT || 3000;
+const port = process.env.PORT || 3333;
 
 app.use(bodyParser.json());
 
 app.use("/", router);
 
-app.listen(port, () => {
-    console.log(`server listen ${port}`);
-});
+app.listen(port, () =>
+  console.log(`API available on http://localhost:${port}`)
+);
