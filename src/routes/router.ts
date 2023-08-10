@@ -1,11 +1,9 @@
 import { Request, Response, Router } from "express";
-import { v4 } from "uuid";
 import * as fs from "node:fs";
 
 import appRoot from 'app-root-path';
 
 export const router = Router();
-let transactionData: Array<string|number> = [];
 
 //hello
 router.get('/', (req: Request, res: Response) => {

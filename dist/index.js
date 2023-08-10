@@ -10,9 +10,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const router_1 = require("./routes/router");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const port = +!process.env.PORT || 3000;
+const port = process.env.PORT || 3333;
 app.use(body_parser_1.default.json());
 app.use("/", router_1.router);
-app.listen(port, () => {
-    console.log(`server listen ${port}`);
-});
+app.listen(port, () => console.log(`API available on http://localhost:${port}`));

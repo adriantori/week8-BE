@@ -31,7 +31,6 @@ const express_1 = require("express");
 const fs = __importStar(require("node:fs"));
 const app_root_path_1 = __importDefault(require("app-root-path"));
 exports.router = (0, express_1.Router)();
-let transactionData = [];
 //hello
 exports.router.get('/', (req, res) => {
     res.send("Welcome to Codegree API");
