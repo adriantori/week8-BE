@@ -38,15 +38,15 @@ exports.router.get('/', (req, res) => {
 });
 //get all transaction
 exports.router.get('/transaction', (req, res) => {
-    const jsonContent = fs.readFileSync(`${app_root_path_1.default}\\model\\transaction.json`);
+    const jsonContent = fs.readFileSync(`./model/transaction.json`);
     res.send(jsonContent);
 });
 //push transaction
 exports.router.post('/transaction', (req, res) => {
-    fs.readFile(`${app_root_path_1.default}\\model\\transaction.json`, 'utf8', function (err, data) {
+    fs.readFile(`./model/transaction.json`, 'utf8', function (err, data) {
         var transactions = JSON.parse(data);
         transactions.push(req.body);
-        fs.writeFile(`${app_root_path_1.default}\\model\\transaction.json`, JSON.stringify(transactions), function (err) {
+        fs.writeFile(`./model/transaction.json`, JSON.stringify(transactions), function (err) {
             if (err)
                 throw err;
             res.send('Insert data successful');
@@ -56,7 +56,7 @@ exports.router.post('/transaction', (req, res) => {
 //get transaction by id
 exports.router.get('/transaction/:id', (req, res) => {
     // First retrieve existing user list
-    fs.readFile(`${app_root_path_1.default}\\model\\transaction.json`, 'utf8', function (err, data) {
+    fs.readFile(`./model/transaction.json`, 'utf8', function (err, data) {
         const transactions = JSON.parse(data);
         const transaction = transactions[+req.params.id - 1];
         if (!transaction) {
@@ -70,7 +70,7 @@ exports.router.get('/transaction/:id', (req, res) => {
 });
 //delete transaction by id
 exports.router.delete('/transaction/:id', (req, res) => {
-    fs.readFile(`${app_root_path_1.default}\\model\\transaction.json`, 'utf8', function (err, data) {
+    fs.readFile(`./model/transaction.json`, 'utf8', function (err, data) {
         const transactions = JSON.parse(data);
         const transaction = transactions[+req.params.id - 1];
         if (!transaction) {
@@ -78,7 +78,7 @@ exports.router.delete('/transaction/:id', (req, res) => {
         }
         else {
             delete transactions[+req.params.id - 1];
-            fs.writeFile(`${app_root_path_1.default}\\model\\transaction.json`, JSON.stringify(transactions), function (err) {
+            fs.writeFile(`./model/transaction.json`, JSON.stringify(transactions), function (err) {
                 if (err)
                     throw err;
             });
@@ -89,7 +89,7 @@ exports.router.delete('/transaction/:id', (req, res) => {
 });
 //patch by id
 exports.router.patch('/transaction/:id', (req, res) => {
-    fs.readFile(`${app_root_path_1.default}\\model\\transaction.json`, 'utf8', function (err, data) {
+    fs.readFile(`./model/transaction.json`, 'utf8', function (err, data) {
         const transactions = JSON.parse(data);
         const transaction = transactions[+req.params.id - 1];
         const { name, detail, amount } = req.body;
@@ -103,7 +103,7 @@ exports.router.patch('/transaction/:id', (req, res) => {
                 transaction.detail = detail;
             if (amount)
                 transaction.amount = amount;
-            fs.writeFile(`${app_root_path_1.default}\\model\\transaction.json`, JSON.stringify(transactions), function (err) {
+            fs.writeFile(`./model/transaction.json`, JSON.stringify(transactions), function (err) {
                 if (err)
                     throw err;
             });

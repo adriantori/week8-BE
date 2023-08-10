@@ -13,16 +13,16 @@ router.get('/', (req: Request, res: Response) => {
 
 //get all transaction
 router.get('/transaction', (req: Request, res: Response) => {
-    const jsonContent = fs.readFileSync(`${appRoot}\\model\\transaction.json`);
+    const jsonContent = fs.readFileSync(`./model/transaction.json`);
     res.send(jsonContent);
 });
 
 //push transaction
 router.post('/transaction', (req: Request, res: Response) => {
-    fs.readFile(`${appRoot}\\model\\transaction.json`, 'utf8', function (err, data) {
+    fs.readFile(`./model/transaction.json`, 'utf8', function (err, data) {
         var transactions = JSON.parse(data);
         transactions.push(req.body);    
-        fs.writeFile(`${appRoot}\\model\\transaction.json`, JSON.stringify(transactions), function(err){
+        fs.writeFile(`./model/transaction.json`, JSON.stringify(transactions), function(err){
           if (err) throw err;
           res.send('Insert data successful');
         });
@@ -32,7 +32,7 @@ router.post('/transaction', (req: Request, res: Response) => {
 //get transaction by id
 router.get('/transaction/:id', (req: Request, res: Response) => {
     // First retrieve existing user list
-    fs.readFile(`${appRoot}\\model\\transaction.json`, 'utf8', function (err, data) {
+    fs.readFile(`./model/transaction.json`, 'utf8', function (err, data) {
         const transactions = JSON.parse( data );
         const transaction = transactions[+req.params.id-1] ;
         if(!transaction){
@@ -45,14 +45,14 @@ router.get('/transaction/:id', (req: Request, res: Response) => {
 
 //delete transaction by id
 router.delete('/transaction/:id', (req: Request, res: Response) => {
-    fs.readFile(`${appRoot}\\model\\transaction.json`, 'utf8', function (err, data) {
+    fs.readFile(`./model/transaction.json`, 'utf8', function (err, data) {
         const transactions = JSON.parse( data );
         const transaction = transactions[+req.params.id-1] ;
         if(!transaction){
             res.send("Data not found");
         }else{ 
             delete transactions[+req.params.id-1];
-            fs.writeFile(`${appRoot}\\model\\transaction.json`, JSON.stringify(transactions), function(err){
+            fs.writeFile(`./model/transaction.json`, JSON.stringify(transactions), function(err){
                 if (err) throw err;
               });
             res.send(transactions);
@@ -62,7 +62,7 @@ router.delete('/transaction/:id', (req: Request, res: Response) => {
 
 //patch by id
 router.patch('/transaction/:id', (req: Request, res: Response) => {
-    fs.readFile(`${appRoot}\\model\\transaction.json`, 'utf8', function (err, data) {
+    fs.readFile(`./model/transaction.json`, 'utf8', function (err, data) {
         const transactions = JSON.parse( data );
         const transaction = transactions[+req.params.id-1] ;
         const { name, detail, amount } = req.body;
@@ -74,7 +74,7 @@ router.patch('/transaction/:id', (req: Request, res: Response) => {
             if(name) transaction.name = name;
             if(detail) transaction.detail = detail;
             if(amount) transaction.amount = amount;
-            fs.writeFile(`${appRoot}\\model\\transaction.json`, JSON.stringify(transactions), function(err){
+            fs.writeFile(`./model/transaction.json`, JSON.stringify(transactions), function(err){
                 if (err) throw err;
               });
             res.send(transactions);
