@@ -8,8 +8,8 @@ interface Transaction {
 }
 
 const transactions: Transaction[] = [
-    { id: 1, type:"cash in", name: "gajian", detail: "gajian bulanan", amount: 100000},
-    { id: 2, type: "cash out", name: "khilaf", detail: "steam sale", amount: 50000},
+    { id: 1, type:"Cash In", name: "gajian", detail: "gajian bulanan", amount: 100000},
+    { id: 2, type: "Cash Out", name: "khilaf", detail: "steam sale", amount: 50000},
 ]
 
 export default transactions;
