@@ -1,14 +1,15 @@
 //user data
 interface Transaction {
     id: number;
+    type: string;
     name: string;
-    details: string;
+    detail: string;
     amount: number;
 }
 
 const transactions: Transaction[] = [
-    { id: 1, name: "cash in", details: "gajian", amount: 100000},
-    { id: 2, name: "cash out", details: "steam sale", amount: 50000},
+    { id: 1, type:"cash in", name: "gajian", detail: "gajian bulanan", amount: 100000},
+    { id: 2, type: "cash out", name: "khilaf", detail: "steam sale", amount: 50000},
 ]
 
 export default transactions;

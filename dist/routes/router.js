@@ -5,48 +5,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 const express_1 = require("express");
-const model_1 = __importDefault(require("../models/model"));
+const helloWorld_js_1 = __importDefault(require("../controllers/helloWorld.js"));
+const getAllTransaction_1 = __importDefault(require("../controllers/getAllTransaction"));
+const postTransaction_1 = __importDefault(require("../controllers/postTransaction"));
+const getTransactionById_1 = __importDefault(require("../controllers/getTransactionById"));
+const deleteTransaction_1 = __importDefault(require("../controllers/deleteTransaction"));
+const putTransaction_1 = __importDefault(require("../controllers/putTransaction"));
+const patchTransaction_1 = __importDefault(require("../controllers/patchTransaction"));
+const pageNotFound_1 = __importDefault(require("../controllers/pageNotFound"));
 exports.router = (0, express_1.Router)();
 //hello
-exports.router.get('/', (req, res) => {
-    res.send("Welcome to Codegree API");
-});
-//get all transaction
-exports.router.get('/transaction', (req, res) => {
-    res.send(model_1.default);
-});
+exports.router.get('/', helloWorld_js_1.default);
+//getAllTransaction
+exports.router.get('/transaction', getAllTransaction_1.default);
 //push transaction
-exports.router.post('/transaction', (req, res) => {
-    const input = req.body;
-    model_1.default.push(input);
-    res.json({
-        message: "Transaction success",
-        input,
-    });
-});
+exports.router.post('/transaction', postTransaction_1.default);
 //get transaction by id
-exports.router.get('/transaction/:id', (req, res) => {
-    const currTransaction = model_1.default;
-    for (let i = 0; i < currTransaction.length; i++) {
-        if (currTransaction[i].id == +req.params.id) {
-            res.send(currTransaction[i]);
-        }
-    }
-});
+exports.router.get('/transaction/:id', getTransactionById_1.default);
 //delete transaction by id
-exports.router.delete('/transaction/:id', (req, res) => {
-    const currTransaction = model_1.default;
-});
+exports.router.delete('/transaction/:id', deleteTransaction_1.default);
 //put by id
-exports.router.put('/transaction/:id', (req, res) => {
-    const currTransaction = model_1.default;
-    const { id, name, detail, amount } = req.body;
-    if (id)
-        currTransaction;
-});
+exports.router.put('/transaction/:id', putTransaction_1.default);
 //patch by id
-exports.router.patch('/transaction/:id', (req, res) => {
-    const currTransaction = model_1.default;
-    const { id, name, detail, amount } = req.body;
-    //if(id){}
-});
+exports.router.patch('/transaction/:id', patchTransaction_1.default);
+//page not found
+exports.router.get("*", pageNotFound_1.default);

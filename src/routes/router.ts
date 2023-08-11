@@ -1,62 +1,35 @@
-import { Request, Response, Router } from "express";
-import transactions from "../models/model";
+import { Router } from "express";
 
-import * as fs from "node:fs";
-import appRoot from 'app-root-path';
-
+import helloWorld from "../controllers/helloWorld.js"
+import getAllTransaction from "../controllers/getAllTransaction";
+import postTransaction from "../controllers/postTransaction";
+import getTransactionById from "../controllers/getTransactionById";
+import deleteTransaction from "../controllers/deleteTransaction";
+import putTransaction from "../controllers/putTransaction";
+import patchTransaction from "../controllers/patchTransaction";
+import pageNotFound from "../controllers/pageNotFound";
 export const router = Router();
 
 //hello
-router.get('/', (req: Request, res: Response) => {
-    res.send("Welcome to Codegree API")
-});
+router.get('/', helloWorld);
 
-//get all transaction
-router.get('/transaction', (req: Request, res: Response) => {
-    res.send(transactions);
-});
+//getAllTransaction
+router.get('/transaction', getAllTransaction);
 
 //push transaction
-router.post('/transaction', (req: Request, res: Response) => {
-    const input = req.body;
-
-    transactions.push(input);
-    res.json({
-        message: "Transaction success",
-        input,
-    });
-});
+router.post('/transaction', postTransaction);
 
 //get transaction by id
-router.get('/transaction/:id', (req: Request, res: Response) => {
-    const currTransaction = transactions;
-    for(let i = 0; i < currTransaction.length; i++){
-        if(currTransaction[i].id == +req.params.id){
-            res.send(currTransaction[i]);
-        }
-    }
-});
+router.get('/transaction/:id', getTransactionById);
 
 //delete transaction by id
-router.delete('/transaction/:id', (req: Request, res: Response) => {
-    const currTransaction = transactions;
-});
+router.delete('/transaction/:id', deleteTransaction);
 
 //put by id
-router.put('/transaction/:id', (req: Request, res: Response) => {
-    const currTransaction = transactions;
-    const { id, name, detail, amount } = req.body;
-
-    if(id) currTransaction
-
-});
+router.put('/transaction/:id', putTransaction);
 
 //patch by id
-router.patch('/transaction/:id', (req: Request, res: Response) => {
-    const currTransaction = transactions;
-    const { id, name, detail, amount } = req.body;
+router.patch('/transaction/:id', patchTransaction);
 
-    //if(id){}
-
-});
-
+//page not found
+router.get("*", pageNotFound);
